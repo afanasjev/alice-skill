@@ -7,6 +7,7 @@ import (
 
 // Функция main вызывается автоматически при запуске приложения
 func main() {
+	parseFlags()
 	if err := run(); err != nil {
 		panic(err)
 	}
@@ -14,7 +15,7 @@ func main() {
 
 // Функция run будет полезна при инициализации зависимостей сервера перед запуском
 func run() error {
-	return http.ListenAndServe(`:8080`, http.HandlerFunc(webhook))
+	return http.ListenAndServe(flagRunAddr, http.HandlerFunc(webhook))
 }
 
 // функция webhook — обработчик HTTP-запроса
